@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% from "form_macros.html" import render_login %}
+{% from "form_macros.html" import render_checkbox %}
+
+{% block container %}
+
+<div class="form-group col-xs-6 col-md-6 col-xs-offset-3">
+    <h1 style="clear:both">Please login</h1>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        {{ render_login(form.username, placeholder="Enter Username", required="True") }}
+        {{ render_login(form.password, placeholder="Enter Password", required="True") }}
+          
+        <button type="submit">Login</button>
+        <label>
+            <!--<input type="checkbox" id="remember" name="remember"> Remember me -->
+            {{ render_checkbox(form.remember) }}
+        </label>
+    </form> 
+
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+body {
+  padding-top: 50px;
+}
+.top-pad {
+  padding: 40px 15px;
+  text-align: center;
+}
+.table .table-hover tr td a:any-link {
+  color: red
+}
+
+
+
+/* Tagging Basic Style */
+/* Tagging Basic Style */
+/* Tagging Basic Style */
+.tagging {
+	border: 1px solid #CCCCCC;
+	cursor: text;
+	font-size: 1em;
+	height: auto;
+	padding: 1px 1px 5px 5px;
+}
+
+.tag {
+	background: none repeat scroll 0 0 #2876AF;
+	border-radius: 2px;
+	color: white;
+	cursor: default;
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+	padding: 4px 20px 4px 0;
+	margin: 5px 10px 0 0;
+}
+
+.tag span {
+	background: none repeat scroll 0 0 #656869;
+	border-radius: 2px 0 0 2px;
+	margin-right: 5px;
+	padding: 5px 10px 5px;
+}
+
+.tag .tag-i {
+	color: white;
+	cursor: pointer;
+	font-size: 1.3em;
+	height: 0;
+	line-height: 0.1em;
+	position: absolute;
+	right: 5px;
+	top: 0.7em;
+	text-align: center;
+	width: 10px;
+}
+
+.tag .tag-i:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+.type-zone {
+	border: 0 none;
+	height: auto;
+	width: auto;
+	min-width: 20px;
+	display: inline-block;
+}
+
+.type-zone:focus {
+	outline: none;
+}
+/* Tagging Basic Style */
+/* Tagging Basic Style */
+/* Tagging Basic Style */
+
+
+
+
+
+
+
+
+/************************************************/
+/*                Login Form                    */
+/************************************************/
+ /* Bordered form */
+ form {
+    border: 3px solid #f1f1f1;
+    padding: 20px 30px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}

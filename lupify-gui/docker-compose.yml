@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+    flask:
+        build:
+            context: .
+            dockerfile: dockerfiles/flask.dockerfile
+        #volumes:
+          #- ./lupify:/app
+          #- .:/app
+        networks:
+          - flask-network
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        networks:
+          - flask-network
+          - mongo-network
+
+networks:
+    flask-network:
+        driver: bridge
+    mongo-network:
+        driver: bridge

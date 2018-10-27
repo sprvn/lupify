@@ -1,0 +1,71 @@
+version: '2'
+
+services:
+    flask:
+        environment:
+            LUPIFY_HTTP_PORT: 8080
+            LUPIFY_HTTPS_PORT: 8443
+            LUPIFY_MONGODB_URI: mongo
+            LUPIFY_MONGODB_USER: lupify_user
+            LUPIFY_MONGODB_PASS: P@ssw0rd
+            LDAP_HOST: openldap
+            LDAP_BIND_USER: cn=admin,dc=example,dc=org
+            LDAP_BIND_PASS: admin
+            LDAP_BASE_DN: dc=example,dc=org
+            LDAP_GROUP_DN: cn=admins,ou=groups,dc=example,dc=org
+        ports:
+            - '8080:8080'
+            - '8443:8443'
+        volumes:
+            - ./lupify:/lupify
+        networks:
+          - flask-openldap
+
+    openldap:
+        build:
+            context: .
+            dockerfile: dockerfiles/openldap.dockerfile
+        environment:
+            - LDAP_TLS_VERIFY_CLIENT=try
+        ports:
+          - '636:636'
+        networks:
+          - flask-openldap
+
+    mongo:
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: example
+        depends_on:
+          - "mongo"
+        networks:
+          - mongo-network
+
+    mongo-seed:
+        build:
+            context: .
+            dockerfile: dockerfiles/mongo-seed.dockerfile
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+            MONGO_DB: lupify
+            MONGO_COL: assets
+            MONGO_USER: lupify_user
+            MONGO_PASS: P@ssw0rd
+        depends_on:
+          - "mongo"
+        networks:
+          - mongo-network
+
+networks:
+    flask-openldap:
+        driver: bridge
