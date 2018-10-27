@@ -42,3 +42,5 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
 docker exec -it f8 mongo -u root -p example -authenticationDatabase admin
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout configs/key.pem -out configs/certificate.pem
