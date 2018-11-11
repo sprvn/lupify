@@ -2,6 +2,8 @@ from configparser import ConfigParser
 from socket import inet_aton
 from re import sub
 from sys import exit
+import helpers.validators as validators
+import helpers.parsers as parsers
 
 def read_configuration():
     '''
@@ -55,27 +57,7 @@ def default_config():
         }
 
 def parse_targets(targets):
-    '''
-    Parse and format the list of targets.
-    '''
-    targets = sub(r'[^0-9./\n]', "", targets)
-    return list(filter(None, targets.split('\n')))
+    return parsers.parse_targets(targets)
 
 def validate_targets(targets):
-    '''
-    Validate the list of targets
-    '''
-    for target in targets:
-        t = target.split('/')
-        if len(t) == 2:
-            t[1] = int(t[1])
-
-        if not t or len(t) > 2:
-            #print("[!] Invalid target specified: %s" % (target))
-            raise ValueError("Invalid target specified: %s" % (target))
-
-        if (not inet_aton(t[0])) or (len(t) == 2 and (t[1] < 8 or t[1] > 32)):
-            #print("[!] Invalid target specified: %s" % (target))
-            raise ValueError("Invalid target specified: %s" % (target))
-
-    return targets
+    return validators.validate_targets(targets)
