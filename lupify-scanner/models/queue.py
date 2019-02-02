@@ -1,5 +1,5 @@
 import queue
-import helpers.parsers
+import helpers.parsers as parsers
 
 class QueueBase:
     def put(self, item):
@@ -37,15 +37,17 @@ class Queue(QueueBase):
         if not isinstance(items, list):
             raise TypeError
 
-        for item in items:
-            print(item)
-        return False
+        for item in parsers.target_list(items):
+            self.put(item)
+        return True
 
     def put(self, item):
         self.queue.put(item)
 
     def get(self):
-        return self.queue.get()
+        item = self.queue.get()
+        self.put(item)
+        return item
 
     def size(self):
         return self.queue.size()

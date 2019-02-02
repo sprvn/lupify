@@ -28,7 +28,8 @@ def read_config_file():
     config = {}
 
     config_keys = [
-        'targets'
+        #'targets',
+        'db'
     ]
     config_file = ConfigParser()
     config_file.read('config.ini')
@@ -59,5 +60,11 @@ def default_config():
 def parse_targets(targets):
     return parsers.parse_targets(targets)
 
+def parse_db(db):
+    return parsers.parse_db(db)
+
 def validate_targets(targets):
     return validators.validate_targets(targets)
+
+def validate_db(db):
+    return validators.validate_db(db)

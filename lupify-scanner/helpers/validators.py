@@ -18,3 +18,6 @@ def validate_targets(targets):
             raise ValueError("Invalid target specified: %s" % (target))
 
     return targets
+
+def validate_db(db):
+    return db

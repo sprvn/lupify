@@ -20,13 +20,13 @@ class TestConfiguration(unittest.TestCase):
     def test_queue_get(self):
         q = queue.Queue(self.conf)
         q.put('some_item')
-        self.assertEqual('some_item', q.get())
         q.put('some_item_1')
+        self.assertEqual('some_item', q.get())
         q.put('some_item_2')
         q.put('some_item_3')
         q.put('some_item_4')
         self.assertEqual('some_item_1', q.get())
-        self.assertEqual('some_item_2', q.get())
+        self.assertEqual('some_item', q.get())
 
     def test_queue_size(self):
         q = queue.Queue(self.conf)
@@ -40,9 +40,13 @@ class TestConfiguration(unittest.TestCase):
     def test_queue_local_targets_wrong_type(self):
         self.assertRaises(TypeError, queue.Queue, {'queue': 'local', 'targets': 'hola'})
 
-    def test_queue_local_initializing(self):
+    def test_queue_local_initializing_list(self):
         q = queue.Queue(self.conf)
-        self.assertEqual(False, q.initialize(['127.0.0.1']))
+        self.assertEqual(True, q.initialize(['127.0.0.1']))
+
+    def test_queue_local_initializing_string(self):
+        q = queue.Queue(self.conf)
+        self.assertRaises(TypeError, q.initialize, '127.0.0.1')
 
 
 if __name__ == '__main__':
