@@ -42,7 +42,7 @@ COPY configs/key.pem /etc/pki/tls/private/
 
 COPY configs/supervisord.conf /etc/supervisord/supervisord.conf
 
-COPY ./lupify /lupify
+COPY ./lupify-gui /lupify
 
 COPY scripts/config_script.sh /tmp/
 

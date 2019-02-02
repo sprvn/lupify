@@ -12,3 +12,10 @@ def parse_targets(targets):
 
 def parse_db(db):
     return db
+
+def parse_mongodb_uri(mongodb_uri):
+    return mongodb_uri
+def parse_mongodb_port(mongodb_port):
+    return mongodb_port
+def parse_mongodb_user(mongodb_user):
+    return mongodb_user

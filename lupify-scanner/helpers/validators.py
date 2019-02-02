@@ -21,3 +21,10 @@ def validate_targets(targets):
 
 def validate_db(db):
     return db
+
+def validate_mongodb_uri(mongodb_uri):
+    return mongodb_uri
+def validate_mongodb_port(mongodb_port):
+    return mongodb_port
+def validate_mongodb_user(mongodb_user):
+    return mongodb_user

@@ -1,5 +1,18 @@
 from helpers.config import read_configuration
 from models.queue import Queue
 import helpers.parsers as helpers
+import helpers.logger
+import helpers.database
+import logging
 
-print(read_configuration())
+
+def main():
+    log = logging.getLogger(__name__)
+    log.info('Reading configuration')
+    config = read_configuration()
+    helpers.database.connect(config)
+
+
+if __name__ == '__main__':
+    main()
+
