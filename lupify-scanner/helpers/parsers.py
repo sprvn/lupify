@@ -13,6 +13,9 @@ def parse_targets(targets):
 def parse_db(db):
     return db
 
+def parse_config_level(config_level):
+    return config_level
+
 def parse_mongodb_uri(mongodb_uri):
     return mongodb_uri
 def parse_mongodb_port(mongodb_port):

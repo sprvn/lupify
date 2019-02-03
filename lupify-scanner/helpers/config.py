@@ -3,7 +3,6 @@ from socket import inet_aton
 from re import sub
 from sys import exit
 import helpers.validators as validators
-import helpers.parsers as parsers
 import logging
 
 log = logging.getLogger(__name__)
@@ -36,6 +35,7 @@ def read_config_file():
         'mongodb_port',
         'mongodb_user',
         'mongodb_pass',
+        'config_level'
     ]
     log.debug('Loading keys: %s' % (','.join(config_keys)))
     config_file = ConfigParser()
@@ -45,15 +45,13 @@ def read_config_file():
         log.critical('Failed to read configuration')
         exit(1) 
         
-    # Dynamically read configuration, parse and validate them
+    # Dynamically read configuration and validate them
     for key in config_keys:
         if key in config_file['DEFAULT']:
-            log.debug('Parsing %s' % (key))
-            parse = globals()['parse_%s' % (key)]
             log.debug('Validating %s' % (key))
             validate = globals()['validate_%s' % (key)]
-            tmp_conf = parse(config_file['DEFAULT'][key])
-            config[key] = validate(tmp_conf)
+            log.debug('Validating %s' % (key))
+            config[key] = validate(config_file['DEFAULT'][key])
         else:
             log.warning('Did not find %s in configuration' % (key))
     log.info('Configuration loaded')
@@ -68,33 +66,14 @@ def default_config():
         'queue': 'local'
         }
 
-def parse_targets(targets):
-    return parsers.parse_targets(targets)
-
-def parse_db(db):
-    return parsers.parse_db(db)
-
-def parse_mongodb_uri(mongodb_uri):
-    return parsers.parse_mongodb_uri(mongodb_uri)
-def parse_mongodb_port(mongodb_port):
-    return parsers.parse_mongodb_port(mongodb_port)
-def parse_mongodb_user(mongodb_user):
-    return parsers.parse_mongodb_user(mongodb_user)
-def parse_mongodb_pass(mongodb_pass):
-    return mongodb_pass
-
-
-def validate_targets(targets):
-    return validators.validate_targets(targets)
-
-def validate_db(db):
-    return validators.validate_db(db)
+def validate_config_level(config_level):
+    return validators.string(config_level)
 
 def validate_mongodb_uri(mongodb_uri):
-    return validators.validate_mongodb_uri(mongodb_uri)
+    return validators.uri(mongodb_uri)
 def validate_mongodb_port(mongodb_port):
-    return validators.validate_mongodb_port(mongodb_port)
+    return validators.integer(mongodb_port)
 def validate_mongodb_user(mongodb_user):
-    return validators.validate_mongodb_user(mongodb_user)
+    return validators.username(mongodb_user)
 def validate_mongodb_pass(mongodb_pass):
     return mongodb_pass

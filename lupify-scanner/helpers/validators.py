@@ -1,30 +1,43 @@
+from sys import exit
 from socket import inet_aton
+import logging
+import re
 
-def validate_targets(targets):
-    '''
-    Validate the list of targets
-    '''
-    for target in targets:
-        t = target.split('/')
-        if len(t) == 2:
-            t[1] = int(t[1])
+log = logging.getLogger(__name__)
 
-        if not t or len(t) > 2:
-            #print("[!] Invalid target specified: %s" % (target))
-            raise ValueError("Invalid target specified: %s" % (target))
+def string(item):
+    log.debug('Validating as string: %s' % (item))
+    if not re.match('^[a-z]+$', item, re.I):
+        log.warning('Validating failed')
+        return False
 
-        if (not inet_aton(t[0])) or (len(t) == 2 and (t[1] < 8 or t[1] > 32)):
-            #print("[!] Invalid target specified: %s" % (target))
-            raise ValueError("Invalid target specified: %s" % (target))
+    log.debug('Validate successful')
+    return item
 
-    return targets
+def integer(item):
+    log.debug('Validating as integer: %s' % (item))
+    if not re.match('^[0-9]+$', item):
+        log.warning('Validating failed')
+        return False
 
-def validate_db(db):
-    return db
+    log.debug('Validate successful')
+    return item
 
-def validate_mongodb_uri(mongodb_uri):
-    return mongodb_uri
-def validate_mongodb_port(mongodb_port):
-    return mongodb_port
-def validate_mongodb_user(mongodb_user):
-    return mongodb_user
+def uri(item):
+    log.debug('Validating as string: %s' % (item))
+    if not (re.match('^[a-z]+$', item, re.I) or
+       re.match('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', item)):
+        log.warning('Validating failed')
+        return False
+
+    log.debug('Validate successful')
+    return item
+
+def username(item):
+    log.debug('Validating as string: %s' % (item))
+    if not re.match('^[a-z_]+$', item, re.I):
+        log.warning('Validating failed')
+        return False
+
+    log.debug('Validate successful')
+    return item
