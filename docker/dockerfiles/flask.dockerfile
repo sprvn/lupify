@@ -34,17 +34,17 @@ RUN rm /etc/nginx/nginx.conf
 #RUN rm /etc/nginx/conf.d/default.conf
 #RUN rm /etc/nginx/conf.d/*
 
-COPY configs/nginx.conf /etc/nginx/
-COPY configs/uwsgi-nginx.conf /etc/nginx/conf.d/
+COPY docker/configs/nginx.conf /etc/nginx/
+COPY docker/configs/uwsgi-nginx.conf /etc/nginx/conf.d/
 
-COPY configs/certificate.pem /etc/pki/tls/certs/
-COPY configs/key.pem /etc/pki/tls/private/
+COPY docker/configs/certificate.pem /etc/pki/tls/certs/
+COPY docker/configs/key.pem /etc/pki/tls/private/
 
-COPY configs/supervisord.conf /etc/supervisord/supervisord.conf
+COPY docker/configs/supervisord.conf /etc/supervisord/supervisord.conf
 
 COPY ./lupify-gui /lupify
 
-COPY scripts/config_script.sh /tmp/
+COPY docker/scripts/config_script.sh /tmp/
 
 EXPOSE 80
 EXPOSE 443

@@ -10,6 +10,14 @@ services:
           #- .:/app
         networks:
           - flask-network
+    lupify-scanner:
+        build:
+            context: .
+            dockerfile: docker/dockerfiles/lupify-scanner.dockerfile
+        depends_on:
+          - "mongo"
+        networks:
+          - mongo-network
     mongo:
         image: mongo
         restart: always
