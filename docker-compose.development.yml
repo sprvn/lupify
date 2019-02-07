@@ -17,14 +17,18 @@ services:
             - '8080:8080'
             - '8443:8443'
         volumes:
-            - ./lupify:/lupify
+            - ./lupify-gui:/lupify
         networks:
           - flask-openldap
+
+    lupify-scanner:
+        volumes:
+            - ./lupify-scanner:/lupify-scanner
 
     openldap:
         build:
             context: .
-            dockerfile: dockerfiles/openldap.dockerfile
+            dockerfile: docker/dockerfiles/openldap.dockerfile
         environment:
             - LDAP_TLS_VERIFY_CLIENT=try
         ports:
@@ -36,6 +40,8 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - 27017:27017
 
     mongo-express:
         image: mongo-express
@@ -53,7 +59,7 @@ services:
     mongo-seed:
         build:
             context: .
-            dockerfile: dockerfiles/mongo-seed.dockerfile
+            dockerfile: docker/dockerfiles/mongo-seed.dockerfile
         environment:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: example

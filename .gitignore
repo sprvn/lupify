@@ -4,3 +4,4 @@ venv/
 old/
 *.db
 *.pem
+config.ini
