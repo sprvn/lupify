@@ -13,7 +13,7 @@ class TestConfiguration(unittest.TestCase):
         self.assertEqual(False, validators.string('!"#¤%&/()=?*"^'))
 
     def test_integer_with_number(self):
-        self.assertEqual('12345', validators.integer('12345'))
+        self.assertEqual(12345, validators.integer('12345'))
 
     def test_integer_with_float(self):
         self.assertEqual(False, validators.integer('123.5'))
@@ -32,6 +32,27 @@ class TestConfiguration(unittest.TestCase):
 
     def test_user_with_special_characters(self):
         self.assertEqual(False, validators.username('user_name!"#¤%&/()=?*"^'))
+
+    def test_ip_with_ipv4(self):
+        self.assertEqual('192.168.1.1', validators.ip('192.168.1.1'))
+
+    def test_ip_with_string(self):
+        self.assertEqual(False, validators.ip('a string'))
+
+    def test_ip_with_integer(self):
+        self.assertEqual(False, validators.ip(12345))
+
+    def test_target_with_ip(self):
+        self.assertEqual('127.0.0.1', validators.target('127.0.0.1'))
+
+    def test_target_with_cidr(self):
+        self.assertEqual('127.0.0.1/32', validators.target('127.0.0.1/32'))
+
+    def test_target_with_invalid_cidr(self):
+        self.assertEqual(False, validators.target('127.0.0.1/33'))
+
+    def test_target_with_special_characters(self):
+        self.assertEqual(False, validators.target('!"#¤%&/()=?*"^'))
 
 if __name__ == '__main__':
     unittest.main()

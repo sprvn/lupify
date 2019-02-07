@@ -5,6 +5,7 @@ WORKDIR /lupify-scanner
 #RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install netaddr
 RUN pip install pymongo
+RUN pip install python-nmap
 
 COPY ./lupify-scanner /lupify-scanner
 
