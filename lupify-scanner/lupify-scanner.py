@@ -23,7 +23,15 @@ def main():
 
     s = Scheduler(db)
     scans = s.checkConfiguredScans()
-    scanner({'target': '127.0.0.1/32', 'interval': 60})
+    scanner(db,
+        {
+            '_id': '123345-345-345-345',
+            'target': '192.168.1.16/28', 
+            'interval': 60, 
+            'arguments':[
+                '-sV'
+            ]
+        })
 
 
 if __name__ == '__main__':

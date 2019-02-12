@@ -2,6 +2,7 @@ import sched
 import time
 import logging
 import helpers.validators as validators
+import helpers.functions as functions
 
 log = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ class Scheduler():
                 continue
 
             try:
-                epoch_seconds = str(time.time()).split('.')[0]
+                epoch_seconds = functions.getEpochSeconds()
                 log.debug('Current epoch: {}'.format(epoch_seconds))
             except Exception as e:
                 log.error('Failed to get time: {}'.format(e))

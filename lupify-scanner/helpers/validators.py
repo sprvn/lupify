@@ -61,3 +61,14 @@ def username(item):
 
     log.debug('Validate successful')
     return str(item)
+
+def nmap_args(item):
+    log.debug('Validating NMAP args: %s' % (str(item)))
+    for arg in item:
+        log.debug('Validating {}'.format(arg))
+        if not re.match('^[a-zA-Z0-9-]+$', str(arg), re.I):
+            log.warning('Validate failed: {}'.format(arg))
+            return False
+
+    log.debug('Validate successful')
+    return str(item)
