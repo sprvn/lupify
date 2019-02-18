@@ -1,117 +1,166 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
-  padding-top: 50px;
-}
-.top-pad {
-  padding: 40px 15px;
-  text-align: center;
-}
-.table .table-hover tr td a:any-link {
-  color: red
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
 }
 
-
-
-/* Tagging Basic Style */
-/* Tagging Basic Style */
-/* Tagging Basic Style */
-.tagging {
-	border: 1px solid #CCCCCC;
-	cursor: text;
-	font-size: 1em;
-	height: auto;
-	padding: 1px 1px 5px 5px;
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
 }
 
-.tag {
-	background: none repeat scroll 0 0 #2876AF;
-	border-radius: 2px;
-	color: white;
-	cursor: default;
-	display: inline-block;
-	position: relative;
-	white-space: nowrap;
-	padding: 4px 20px 4px 0;
-	margin: 5px 10px 0 0;
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
-.tag span {
-	background: none repeat scroll 0 0 #656869;
-	border-radius: 2px 0 0 2px;
-	margin-right: 5px;
-	padding: 5px 10px 5px;
-}
-
-.tag .tag-i {
-	color: white;
-	cursor: pointer;
-	font-size: 1.3em;
-	height: 0;
-	line-height: 0.1em;
-	position: absolute;
-	right: 5px;
-	top: 0.7em;
-	text-align: center;
-	width: 10px;
-}
-
-.tag .tag-i:hover {
-	color: black;
-	text-decoration: underline;
-}
-
-.type-zone {
-	border: 0 none;
-	height: auto;
-	width: auto;
-	min-width: 20px;
-	display: inline-block;
-}
-
-.type-zone:focus {
-	outline: none;
-}
-/* Tagging Basic Style */
-/* Tagging Basic Style */
-/* Tagging Basic Style */
-
-
-
-
-
-
-
-
-/************************************************/
-/*                Login Form                    */
-/************************************************/
- /* Bordered form */
- form {
-    border: 3px solid #f1f1f1;
-    padding: 20px 30px;
-}
-
-/* Full-width inputs */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
     border: none;
-    cursor: pointer;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+i,
+span {
+    display: inline-block;
+}
+
+/* Sidebar */
+
+.wrapper {
+    display: flex;
     width: 100%;
 }
 
-/* Add a hover effect for buttons */
-button:hover {
-    opacity: 0.8;
+#sidebar {
+    min-width: 150px;
+    max-width: 150px;
+    z-index: 999;
+    position: fixed;
+    height: 100vh;
+    background: #333F48;
+    color: #fff;
+    transition: all 0.3s;
+    font-size: 1.5em;
+}
+
+#sidebar.nav-small {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+#sidebar ul li a {
+    text-align: left;
+    color: #FFF;
+    text-decoration: none;
+}
+
+#sidebar ul li .menu-text {
+    font-size: 0.8em;
+    transition: all 0.4s;
+}
+
+#sidebar.nav-small ul li a {
+    text-align: center;
+    padding-left: 15px;
+}
+#sidebar.nav-small ul li .menu-text {
+    visibility: hidden;
+    font-size: 0em;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #333F48;
+}
+
+#sidebar .sidebar-header strong {
+    display: none;
+    font-size: 1.8em;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #000;
+}
+
+#sidebar ul.nav-footer .nav-collapse {
+    font-size: 0.6em;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #333;
+    background: #fff;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+#sidebar ul li.active>a:hover,
+a[aria-expanded="true"] {
+    padding-top: 10px;
+    color: #333F48;
+    background: #FFF;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    padding-top: 10px;
+    color: #333F48;
+    background: #FFC658;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+#sidebar.nav-small #sidebarCollapse i {
+    transform: rotate(180deg);
+}
+
+/* Content */
+
+#content {
+    width: calc(100% - 150px);
+    margin-left: 150px;
+    position: absolute;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+#content.nav-small {
+
+    width: calc(100% - 80px);
+    margin-left: 80px;
+
 }

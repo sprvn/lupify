@@ -5,47 +5,101 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Lupify</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <!--<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>-->
         {% include 'partials/header.html' %}
     </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="">Lupify</a>
-                </div>
-	            <ul class="nav navbar-nav">
-	                <li><a href="">Hosts</a></li>
-	                <li><a href="">Networks</a></li>
-	            </ul>
-	            <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">Some user</a></li>
-	                <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-	            </ul>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="nav-small">
+            <div class="sidebar-header">
+                <h3>Lupify</h3>
             </div>
-        </div>
-        <div class="container">
-            <br />
-            {% for category, message in get_flashed_messages(with_categories=true) %}
-                <div class="alert alert-{{category}} alert-dismissable">
-                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{ message }}
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#"><i class="fas fa-home"></i><span class="menu-text">Home</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-bullseye"></i><span class="menu-text">Scans</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-bullseye"></i><span class="menu-text">Scans</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-bullseye"></i><span class="menu-text">Scans</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-bullseye"></i><span class="menu-text">Scans</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled nav-footer">
+                <li>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i><span class="menu-text">Log out</span></a>
+                </li>
+                <li>
+                    <a href="#" id="sidebarCollapse"><i class="nav-collapse fas fa-angle-double-left"></i></a>
+                </li>
+            </ul>
+            <!-- <p><span ></span></p> -->
+        </nav>
+            
+        <div id="content" class="nav-small">
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            {% endfor %}
-            {% block container %}{% endblock %}
+            </nav>
+            
+        {% block content %}
+        {% endblock %}
         </div>
+    </div>
+        <!-- <div class="container"> -->
+            <!-- <br /> -->
+            <!-- {% for category, message in get_flashed_messages(with_categories=true) %} -->
+                <!-- <div class="alert alert-{{category}} alert-dismissable"> -->
+                    <!-- <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                    <!-- {{ message }} -->
+                <!-- </div> -->
+            <!-- {% endfor %} -->
+            <!-- {% block container %}{% endblock %} -->
+        <!-- </div> -->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
         <!--<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>-->
     
-        {% block scripts %}
-        {% endblock %}
-
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('nav-small');
+                    $('#content').toggleClass('nav-small');
+                });
+            });
+        </script>
   </body>
 </html>

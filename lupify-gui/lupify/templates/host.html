@@ -2,7 +2,21 @@
 {% block container %}
 
 <div class="form-group col-xs-12 col-md-12">
-    <p>This is a page</p>
+    <p>This is a page a{{ test }}</p>
+    <p>{{ scans }}</p>
+    <div id="accordion">
+        {% for scan in scans %}
+        <div class="card">
+            <div class="card-header bg-success" data-toggle="collapse" href="#asd_{{ loop.index }}">
+                {{ scan }}
+                {{ loop.index }}
+            </div>
+            <div id="asd_{{ loop.index }}" class="collapse" data-parent="#accordion">
+                <p>asdasdasd</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 </div>
 {% endblock %}

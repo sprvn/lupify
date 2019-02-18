@@ -4,7 +4,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from lupify.forms import LoginForm
 from lupify.models import User
 
-from lupify import app, login_manager
+from lupify import app, login_manager, db
 
 from uuid import uuid4
 
@@ -20,7 +20,13 @@ def index():
 @app.route('/host')
 @login_required
 def host():
-    return render_template('host.html')
+    scans = None
+    try:
+        scans = db.scans.find()
+    except Exception as e:
+        print("Failed")
+
+    return render_template('host.html', scans=scans)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
